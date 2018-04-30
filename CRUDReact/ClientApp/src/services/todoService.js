@@ -26,7 +26,7 @@ export const createTodo = (todo) => {
 };
 
 export const updateTodo = (todo) => {
-    return fetch(baseUrl, {
+    return fetch(`${baseUrl}/${todo.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ export const updateTodo = (todo) => {
             description: todo.description,
             finished: todo.finished
         })
-    }).then(res => res.json())
+    })
 };
 
 export const deleteTodo = (id) => {

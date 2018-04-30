@@ -38,17 +38,21 @@ class Todo extends Component {
 
     enableEditMode(event) {
         this.setState(prevState => ({
-            editMode: !prevState.editMode
+            editMode: !prevState.editMode,
+            title: prevState.todo.title,
+            description: prevState.todo.description,
+            finished: prevState.todo.finished
         }));
     }
 
     handleSubmit(event) {
         //alert(this.state.title + " " + this.state.body);
-        var todo = { id: this.state.todo.id ,title: this.state.title, description: this.state.description, finished: this.state.finished };
+        var todo = { id: this.state.todo.id , title: this.state.title, description: this.state.description, finished: this.state.finished };
         //alert(post.title + " " + post.userId);
         updateTodo(todo).then(res => console.log(res));
         event.preventDefault();
-        this.setState({editMode: false})
+        getTodo(this.props.match.params.id).then(todo => this.setState({ todo, editMode: false }));
+
     }
 
     render(){
