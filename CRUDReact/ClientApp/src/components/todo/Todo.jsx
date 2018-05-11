@@ -103,7 +103,7 @@ class Todo extends Component {
                                     <h1>Todo number #{this.state.todo.id}</h1>
                                     <h2>{this.state.todo.title}</h2>
                                     <p>{this.state.todo.description}</p>
-                                    <input type="checkbox" className="form-check-input" id="exampleCheck1" checked={this.state.todo.finished} />
+                                    <input type="checkbox" readOnly className="form-check-input" id="exampleCheck1" checked={this.state.todo.finished} />
                                     <label className="form-check-label" htmlFor="exampleCheck1">Finished</label>
                                     <Button onClick={this.enableEditMode}>Edit</Button>
                                 </Jumbotron>
