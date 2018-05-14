@@ -2,18 +2,19 @@
 const baseUrl = 'https://localhost:44367/api/todos';
 
 export const loadTodos = async () => {
-    const json = await fetch(baseUrl)
+    return await fetch(baseUrl)
         .then(res => res.json());
     return json;
 };
 
 export const getTodo = async (id) => {
-    const json = await fetch(`${baseUrl}/${id}`)
+    return await fetch(`${baseUrl}/${id}`)
         .then(res => res.json());
+        return json;
 };
 
 export const createTodo = async (todo) => {
-    const json = await fetch(baseUrl, {
+    return await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -24,10 +25,11 @@ export const createTodo = async (todo) => {
             finished: todo.finished
         })
     }).then(res => res.json());
+    
 };
 
 export const updateTodo = async (todo) => {
-    const json = await fetch(`${baseUrl}/${todo.id}`, {
+    return await fetch(`${baseUrl}/${todo.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -42,7 +44,7 @@ export const updateTodo = async (todo) => {
 };
 
 export const deleteTodo = async (id) => {
-    const json = await fetch(`${baseUrl}/${id}`, {
+    return await fetch(`${baseUrl}/${id}`, {
         method: 'DELETE'
     }).then(loadTodos);
 };
