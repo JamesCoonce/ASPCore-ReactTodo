@@ -1,8 +1,9 @@
 ﻿import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { loadTodos, createTodo, deleteTodo } from '../../services/todoService';
 import TodoItem from './TodoItem';
 import { ListGroup, ListGroupItem, Button } from 'reactstrap';
-
+import { getAllTodos } from './todoReducer';
 
 class TodoList extends Component {
     constructor() {
@@ -11,11 +12,11 @@ class TodoList extends Component {
     }
 
     componentDidMount() {
-        loadTodos().then(todos => this.setState({ todos, loading: false }));
+        this.props.getAllTodos();
     }
     render() {
         let loading = this.state.loading;
-       
+        const { todoList, match } = this.props;
         return (
             <div>
                 {
@@ -28,7 +29,7 @@ class TodoList extends Component {
                             <h1>All Todos</h1>
                             <a className="btn btn-primary btn-lg btn-block active" role="button" aria-pressed="true" href={'/todos/create'}>Create</a>
                             <ListGroup>
-                                {this.state.todos.map((todo) =>
+                                {todoList.map((todo) =>
                                     <TodoItem key={todo.id} todo={todo} />
                                 )
                                 }
@@ -42,4 +43,12 @@ class TodoList extends Component {
     }
 }
 
-export default TodoList;
+const mapStateToProps = ({todo}) => ({
+    todoList: todo.todos
+});
+
+const mapDispatchToProps = {
+    getAllTodos
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);

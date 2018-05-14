@@ -1,6 +1,7 @@
 ﻿import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import promiseMiddleware from 'redux-promise'
+import promiseMiddleware from 'redux-promise';
+import reducer from './reducers';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
 
 const defaultMiddlewares = [
