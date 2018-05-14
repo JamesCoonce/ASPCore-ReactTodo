@@ -2,12 +2,13 @@
 import TodoForm from './TodoForm';
 import { Jumbotron, Button, Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import { getTodo, updateTodo } from '../../services/todoService';
+import { getTodoById } from './todoReducer';
 
 class Todo extends Component {
     constructor(props) {
         super(props);
 
-        this.state = { todo: null, loading: true, title: '', description: '', finished: false, editMode: false };
+        //this.state = { todo: null, loading: true, title: '', description: '', finished: false, editMode: false };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.enableEditMode = this.enableEditMode.bind(this);
@@ -15,7 +16,7 @@ class Todo extends Component {
     }
 
     componentDidMount(){
-        getTodo(this.props.match.params.id).then(todo => this.setState({todo, loading: false}));
+        this.props.getTodoById(this.props.match.params.id);
     }
 
     handleInputChange(event) {

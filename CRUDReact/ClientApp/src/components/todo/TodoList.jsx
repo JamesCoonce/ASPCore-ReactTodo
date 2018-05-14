@@ -29,7 +29,7 @@ export class TodoList extends Component {
                             <h1>All Todos</h1>
                             <a className="btn btn-primary btn-lg btn-block active" role="button" aria-pressed="true" href={'/todos/create'}>Create</a>
                             <ListGroup>
-                                {todos.map((todo) =>
+                                {todoList.todos.map((todo) =>
                                     <TodoItem key={todo.id} todo={todo} />
                                 )
                                 }

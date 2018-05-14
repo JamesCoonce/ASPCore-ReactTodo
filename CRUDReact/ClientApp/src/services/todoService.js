@@ -4,13 +4,13 @@ const baseUrl = 'https://localhost:44367/api/todos';
 export const loadTodos = async () => {
     return await fetch(baseUrl)
         .then(res => res.json());
-    return json;
+    
 };
 
 export const getTodo = async (id) => {
     return await fetch(`${baseUrl}/${id}`)
         .then(res => res.json());
-        return json;
+        
 };
 
 export const createTodo = async (todo) => {

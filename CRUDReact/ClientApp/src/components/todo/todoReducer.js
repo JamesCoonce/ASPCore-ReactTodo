@@ -22,22 +22,22 @@ export const getAllTodos = async (dispatch) => dispatch({
         payload: loadTodos()
 });
 
-export const getTodoById = id => ({
+export const getTodoById = async (dispatch, id) => dispatch({
     type: ACTION_TYPES.FETCH_TODO,
     payload: getTodo(id)
 });
 
-export const createNewTodo = todo => ({
+export const createNewTodo = async (dispatch, todo) => dispatch({
     type: ACTION_TYPES.CREATE_TODO,
     payload: createTodo(todo)
 });
 
-export const updateTodoById = todo => ({
+export const updateTodoById = async (dispatch, todo) => dispatch({
     type: ACTION_TYPES.UPDATE_TODO,
     payload: updateTodo(todo)
 });
 
-export const deleteTodoById = id => ({
+export const deleteTodoById = async (dispatch, id) => dispatch({
     type: ACTION_TYPES.DELETE_TODO,
     payload: deleteTodo()
 });
