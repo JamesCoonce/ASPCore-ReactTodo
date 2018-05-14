@@ -1,5 +1,5 @@
 import 'isomorphic-fetch';
-import {createAction, handleActions, combineActions } from 'redux-actions';
+import { createAction, handleActions, combineActions } from 'redux-actions';
 import { getTodo, createTodo, updateTodo, loadTodos, deleteTodo } from '../../services/todoService';
 
 export const ACTION_TYPES = {
@@ -11,13 +11,15 @@ export const ACTION_TYPES = {
 };
 
 const initialState = {
-    loading: true
+    loading: true,
+    todos: [],
+    todo: {}
 }
 
 // Action Creators
-export const getAllTodos = () => ({
-    type: ACTION_TYPES.FETCH_TODO_LIST,
-    payload: loadTodos()
+export const getAllTodos = async (dispatch) => dispatch({
+        type: ACTION_TYPES.FETCH_TODO_LIST, 
+        payload: loadTodos()
 });
 
 export const getTodoById = id => ({
@@ -65,7 +67,7 @@ export const updateTodoById = createAction('UPDATE_TODO', async todo => updateTo
 export const deleteTodoById  = createAction('DELETE_TODO', async id => deleteTodo(id)); */
 // Reducer
 
-export default (state = initialState, action) => {
+const todoReducer = (state = initialState, action) => {
     switch(action.type){
         case ACTION_TYPES.FETCH_TODO_LIST: 
             return {
@@ -91,3 +93,6 @@ export default (state = initialState, action) => {
         
     }
 }
+
+
+export default todoReducer;

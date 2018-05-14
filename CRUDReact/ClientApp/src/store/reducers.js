@@ -1,5 +1,4 @@
-import { combineReducers } from 'redux';
-import todo from '../components/todo/todoReducer';
-export default combineReducers({
-    todo
-});
+import {combineReducers} from 'redux';
+import todoReducer from '../components/todo/todoReducer';
+const reducers = combineReducers({todoReducer});
+export default reducers;

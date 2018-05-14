@@ -5,18 +5,18 @@ import TodoItem from './TodoItem';
 import { ListGroup, ListGroupItem, Button } from 'reactstrap';
 import { getAllTodos } from './todoReducer';
 
-class TodoList extends Component {
+export class TodoList extends Component {
     constructor() {
         super();
-        this.state = { todos: [], loading: true, title: "", description: "", finished: false };
+
     }
 
     componentDidMount() {
         this.props.getAllTodos();
     }
     render() {
-        let loading = this.state.loading;
-        const { todoList, match } = this.props;
+        const { todos, match, loading, todoList } = this.props;
+        console.log(this.props);
         return (
             <div>
                 {
@@ -29,7 +29,7 @@ class TodoList extends Component {
                             <h1>All Todos</h1>
                             <a className="btn btn-primary btn-lg btn-block active" role="button" aria-pressed="true" href={'/todos/create'}>Create</a>
                             <ListGroup>
-                                {todoList.map((todo) =>
+                                {todos.map((todo) =>
                                     <TodoItem key={todo.id} todo={todo} />
                                 )
                                 }
@@ -43,12 +43,16 @@ class TodoList extends Component {
     }
 }
 
-const mapStateToProps = ({todo}) => ({
-    todoList: todo.todos
+const mapStateToProps = (state, ownProps) => ({
+    todos: [],
+    todoList: state.todoReducer
 });
 
-const mapDispatchToProps = {
-    getAllTodos
-};
+const mapDispatchToProps = dispatch => ({
+    getAllTodos: () => dispatch(getAllTodos)
+});
 
-export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
+export default connect(
+    mapStateToProps, 
+    mapDispatchToProps
+)(TodoList);

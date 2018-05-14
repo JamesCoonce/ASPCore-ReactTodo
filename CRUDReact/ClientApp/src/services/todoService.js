@@ -1,18 +1,19 @@
 ﻿import 'isomorphic-fetch';
 const baseUrl = 'https://localhost:44367/api/todos';
 
-export const loadTodos = () => {
-    return fetch(baseUrl)
-        .then(res => res.json())
+export const loadTodos = async () => {
+    const json = await fetch(baseUrl)
+        .then(res => res.json());
+    return json;
 };
 
-export const getTodo = (id) => {
-    return fetch(`${baseUrl}/${id}`)
-        .then(res => res.json())
+export const getTodo = async (id) => {
+    const json = await fetch(`${baseUrl}/${id}`)
+        .then(res => res.json());
 };
 
-export const createTodo = (todo) => {
-    return fetch(baseUrl, {
+export const createTodo = async (todo) => {
+    const json = await fetch(baseUrl, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -22,11 +23,11 @@ export const createTodo = (todo) => {
             description: todo.description,
             finished: todo.finished
         })
-    }).then(res => res.json())
+    }).then(res => res.json());
 };
 
-export const updateTodo = (todo) => {
-    return fetch(`${baseUrl}/${todo.id}`, {
+export const updateTodo = async (todo) => {
+    const json = await fetch(`${baseUrl}/${todo.id}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -37,11 +38,11 @@ export const updateTodo = (todo) => {
             description: todo.description,
             finished: todo.finished
         })
-    })
+    });
 };
 
-export const deleteTodo = (id) => {
-    return fetch(`${baseUrl}/${id}`, {
+export const deleteTodo = async (id) => {
+    const json = await fetch(`${baseUrl}/${id}`, {
         method: 'DELETE'
-    }).then(loadTodos)
+    }).then(loadTodos);
 };

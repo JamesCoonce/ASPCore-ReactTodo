@@ -4,10 +4,10 @@ import { Jumbotron, Button, Col, Form, FormGroup, Label, Input, FormText } from 
 import { getTodo, updateTodo } from '../../services/todoService';
 
 class Todo extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
 
-        this.state = { todo: null, loading: true, title: "", description: "", finished: false, editMode: false };
+        this.state = { todo: null, loading: true, title: '', description: '', finished: false, editMode: false };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.enableEditMode = this.enableEditMode.bind(this);
@@ -112,7 +112,7 @@ class Todo extends Component {
                     )
                 }
             </div>
-        )
+        );
     }
 }
 
